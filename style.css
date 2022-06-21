@@ -1,0 +1,18 @@
+*
+{
+    color: white;
+}
+.carosello-container
+{
+    background-color: red;
+}
+
+.carosello-container-img img
+{
+    display: none;
+    width: 100%;
+}
+.carosello-container-img img.active
+{
+    display: block;
+}
