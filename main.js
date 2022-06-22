@@ -21,3 +21,12 @@ for (let index = 0; index < images.length; index++) {
     }
     caroselloContainerImg.append(imgHtml);
 }
+
+
+// ? obiettivo?
+// ? btn attendi il click, al click devi togliere la classe active (img attuale) e aggiungerlo a quello dopo 
+
+const btnNext = document.getElementById('btn-next');
+btnNext.addEventListener('click', function() {
+    // console.log("click!");
+});
