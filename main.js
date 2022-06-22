@@ -8,7 +8,7 @@ const images = [
     ];
 
 // ? Tutte le immagini saranno nascoste, tranne la prima, che avrà una classe specifica che la renderà visibile
-const imgActive = 0;
+let imgActiveIndex = 0;
 const caroselloContainerImg = document.querySelector(".carosello-container .carosello-container-img")
 // ? obiettivo? 
 // ? check di tutte le immagini e registrale, nell'html, una ad una (non saranno visibile ad eccezione di imgActive)
@@ -16,7 +16,7 @@ const caroselloContainerImg = document.querySelector(".carosello-container .caro
 for (let index = 0; index < images.length; index++) {
     const imgHtml = document.createElement('img');
     imgHtml.setAttribute('src', images[index]);
-    if (imgActive === index){
+    if (imgActiveIndex === index){
         imgHtml.classList.add('active');
     }
     caroselloContainerImg.append(imgHtml);
@@ -28,5 +28,42 @@ for (let index = 0; index < images.length; index++) {
 
 const btnNext = document.getElementById('btn-next');
 btnNext.addEventListener('click', function() {
-    // console.log("click!");
+    console.log("next clicked!");
+    // ? prendi l'immagine attiva e rimuovi active
+    const imgActive = document.querySelector(".carosello-container .carosello-container-img img.active")
+    imgActive.classList.remove("active");
+
+    // ? next
+    imgActiveIndex++;
+    console.log(`indice attuale ${imgActiveIndex}`);
+
+    // ? error > imgAll.length
+    if (imgActiveIndex === images.length) {
+        imgActiveIndex = 0;
+        console.log(`reset next`);
+    }
+
+    // ? check tutte le img e dai active a img che ha un index uguale a imgActiveIndex
+    const imgAll = document.querySelectorAll(".carosello-container .carosello-container-img img");
+    imgAll[imgActiveIndex].classList.add("active");
+    console.log(imgAll);
+});
+
+const btnPrev = document.getElementById("btn-prev");
+btnPrev.addEventListener("click", function() {
+    console.log("prev clicked!");
+    const imgActive = document.querySelector(".carosello-container .carosello-container-img img.active")
+    imgActive.classList.remove("active");
+
+    if (imgActiveIndex === 0) {
+        imgActiveIndex = images.length;
+        console.log(`reset prev`);
+    }
+    imgActiveIndex--;
+    console.log(`indice attuale ${imgActiveIndex}`);
+
+    const imgAll = document.querySelectorAll(".carosello-container .carosello-container-img img")
+    console.log(imgAll);
+
+    imgAll[imgActiveIndex].classList.add("active");
 });
